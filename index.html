@@ -3,11 +3,26 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Wedding Invitation</title>
+
+    <title>Hoang anh & Ethan Rinehart Wedding</title>
+
+    <meta property="og:title" content="Wedding Invitation" />
+
+    <meta property="og:description" content="Anh Nguyen & Ethan Rinehart" />
+
+    <meta
+      property="og:image"
+      content="public/images/thiep_chinh_p2.png"
+      id="ogImage"
+    />
+
+    <meta property="og:type" content="website" />
+
     <link
       href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;600&family=Montserrat:wght@300;400&display=swap"
       rel="stylesheet"
     />
+
     <link rel="stylesheet" href="./css/style.css" />
   </head>
   <body>
@@ -127,8 +142,12 @@
 
     // ảnh khách
     if (photo) {
-      document.querySelectorAll('.gallery-preview img')[1].src =
-        `public/images/${photo}`;
+      const imagePath = `public/images/${photo}`;
+
+      document.querySelectorAll('.gallery-preview img')[1].src = imagePath;
+
+      // thêm dòng này, logic cũ giữ nguyên
+      document.getElementById('ogImage').content = imagePath;
     }
     const music = document.getElementById('music');
     const btn = document.getElementById('musicBtn');
