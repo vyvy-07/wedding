@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Guest Invite Generator</title>
+    <style>
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+      body {
+        font-family: Arial, sans-serif;
+        min-height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 20px;
+        background: #faf7f2;
+      }
+      .card {
+        width: 100%;
+        max-width: 700px;
+        background: white;
+        border-radius: 16px;
+        padding: 24px;
+        box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+      }
+      h2 {
+        margin-bottom: 20px;
+      }
+      .group {
+        margin-bottom: 16px;
+      }
+      label {
+        display: block;
+        margin-bottom: 8px;
+        font-weight: 600;
+      }
+      input {
+        width: 100%;
+        padding: 12px;
+        border: 1px solid #ddd;
+        border-radius: 10px;
+      }
+      button {
+        border: none;
+        padding: 12px 20px;
+        border-radius: 10px;
+        cursor: pointer;
+      }
+      #result {
+        margin-top: 20px;
+        padding: 16px;
+        background: #f8f8f8;
+        border-radius: 10px;
+        word-break: break-all;
+      }
+      img {
+        margin-top: 16px;
+        max-width: 180px;
+        border-radius: 12px;
+        display: none;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="card">
+      <h2>Wedding Invite Config</h2>
+
+      <div class="group">
+        <label>Tên khách</label>
+        <input id="guestInput" placeholder="Ví dụ: Cô Lan" />
+      </div>
+
+      <div class="group">
+        <label>Ảnh khách</label>
+        <input id="imageInput" type="file" accept="image/*" />
+      </div>
+
+      <button onclick="generate()">Generate Link</button>
+
+      <div id="result"></div>
+    </div>
+
+    <script>
+      function generate() {
+        const guest =
+          document.getElementById('guestInput').value || 'Quý khách';
+
+        const file = document.getElementById('imageInput').files[0];
+
+        const photo = file ? file.name : '';
+
+        const url =
+          `index.html?guest=${encodeURIComponent(guest)}` +
+          `&photo=${encodeURIComponent(photo)}`;
+
+        document.getElementById('result').innerHTML = url;
+      }
+    </script>
+  </body>
+</html>

@@ -15,6 +15,13 @@
       <div class="invitation">
         <div class="invitation-header">
           <div>
+            <div class="music-player" id="musicBtn">♫</div>
+            <audio id="music" loop>
+              <source
+                src="./public/audio/athousandyears.mp3"
+                type="audio/mpeg"
+              />
+            </audio>
             <p class="family-title">TOGETHER WITH THEIR FAMILIES</p>
           </div>
           <!-- <div class="header-images"> -->
@@ -26,7 +33,7 @@
               <span class="parent-name">Thúy Nguyễn</span>
             </p>
 
-            <div class="divider"></div>
+            <div class="divider">&</div>
             <p>
               <span class="parent-name">Heather Rinehart</span> <br />
               <span class="parent-name">Joshua Rinehart</span>
@@ -37,7 +44,7 @@
             <div class="guest-name">mời ai đó</div>
           </div>
           <p class="invite-text">
-            request the pleasure of your company<br />
+            Request the pleasure of your company<br />
             as their children unite in marriage
           </p>
           <div class="couple-section">
@@ -71,6 +78,9 @@
           <!-- Event Details Card -->
           <div class="event-details">
             <h3>✦ Ceremony ✦</h3>
+            <div class="event-detail-item" style="margin-top: 20px">
+              <strong>Time:</strong> 3:00 PM
+            </div>
             <div class="event-detail-item">
               <strong>Our Lady of La Vang Catholic Church</strong>
             </div>
@@ -78,13 +88,13 @@
               409 Campostella Rd<br />
               Norfolk, VA 23523
             </div>
-            <div class="event-detail-item" style="margin-top: 20px">
-              <strong>Time:</strong> 4:00 PM
-            </div>
           </div>
 
           <div class="event-details">
             <h3>✦ Reception ✦</h3>
+            <div class="event-detail-item" style="margin-top: 20px">
+              <strong>Time:</strong> 5:00 PM
+            </div>
             <div class="event-detail-item">
               <strong>Guang Dong Taste</strong>
             </div>
@@ -103,4 +113,44 @@
       </div>
     </div>
   </body>
+  <script>
+    const params = new URLSearchParams(window.location.search);
+
+    const guest = params.get('guest') || 'Quý khách';
+
+    const photo = params.get('photo');
+
+    // tên khách
+    document.querySelector('.guest-name').innerHTML = guest;
+
+    // ảnh khách
+    if (photo) {
+      document.querySelectorAll('.gallery-preview img')[1].src =
+        `public/images/${photo}`;
+    }
+    const music = document.getElementById('music');
+    const btn = document.getElementById('musicBtn');
+
+    const startMusic = () => {
+      music.play();
+
+      btn.innerHTML = '♫';
+      btn.classList.add('playing');
+      btn.classList.remove('paused');
+
+      document.removeEventListener('click', startMusic);
+    };
+    document.addEventListener('click', startMusic);
+    btn.onclick = () => {
+      if (music.paused) {
+        music.play();
+        btn.innerHTML = '♫';
+        btn.classList.add('playing');
+      } else {
+        music.pause();
+        btn.innerHTML = '♪';
+        btn.classList.remove('playing');
+      }
+    };
+  </script>
 </html>
