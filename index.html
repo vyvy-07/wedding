@@ -10,11 +10,7 @@
 
     <meta property="og:description" content="Anh Nguyen & Ethan Rinehart" />
 
-    <meta
-      property="og:image"
-      content="public/images/thiep_chinh_p2.png"
-      id="ogImage"
-    />
+    <meta property="og:image" content="public/images/thiep_chinh_p1.png" />
 
     <meta property="og:type" content="website" />
 
@@ -145,9 +141,6 @@
       const imagePath = `public/images/${photo}`;
 
       document.querySelectorAll('.gallery-preview img')[1].src = imagePath;
-
-      // thêm dòng này, logic cũ giữ nguyên
-      document.getElementById('ogImage').content = imagePath;
     }
     const music = document.getElementById('music');
     const btn = document.getElementById('musicBtn');
